@@ -25,13 +25,13 @@
 ** структуру (тип struct dirent) для каждого элемента каталога. 
 */
 
-
-struct dirent {
-  ino_t          d_ino;       /* inode */
-  off_t          d_off;       /* смещение на следующую директорию */
-  unsigned short d_reclen;    /* длина данной записи */
-  unsigned char  d_type;      /* тип файла; поддерживается не во всех системах */
-  char           d_name[256]; /* имя файла */
+struct dirent
+{
+        ino_t d_ino;             /* inode */
+        off_t d_off;             /* смещение на следующую директорию */
+        unsigned short d_reclen; /* длина данной записи */
+        unsigned char d_type;    /* тип файла; поддерживается не во всех системах */
+        char d_name[256];        /* имя файла */
 };
 
 /*________________________________________________________________________________________*/
@@ -45,27 +45,28 @@ struct dirent {
 ** а переменной errno присваивается номер ошибки.
 */
 
- int stat(pathname, buffer);
-    char *pathname;             /* path-имя существующего файла */
-    struct stat *buffer;        /*указатель на строку, принимающую
+int stat(pathname, buffer);
+char *pathname;      /* path-имя существующего файла */
+struct stat *buffer; /*указатель на строку, принимающую
                                     результаты */
 
-struct stat {
-    dev_t         st_dev;      /* устройство */
-    ino_t         st_ino;      /* inode */
-    mode_t        st_mode;     /* режим доступа 2*/
-    nlink_t       st_nlink;    /* количество жестких ссылок 2*/
-    uid_t         st_uid;      /* идентификатор пользователя-владельца 4*/
-    gid_t         st_gid;      /* идентификатор группы-владельца */
-    dev_t         st_rdev;     /* тип устройства 4*/
-                               /* (если это устройство) */
-    off_t         st_size;     /* общий размер в байтах  8*/ 
-    blksize_t     st_blksize;  /* размер блока ввода-вывода 
-                                  в файловой системе 4*/
-    blkcnt_t      st_blocks;   /* количество выделенных блоков 8*/
-    time_t        st_atime;    /* время последнего доступа */
-    time_t        st_mtime;    /* время последней модификации */
-    time_t        st_ctime;    /* время последнего изменения */
+struct stat
+{
+        dev_t st_dev;         /* устройство */
+        ino_t st_ino;         /* inode */
+        mode_t st_mode;       /* режим доступа 2*/
+        nlink_t st_nlink;     /* количество жестких ссылок 2*/
+        uid_t st_uid;         /* идентификатор пользователя-владельца 4*/
+        gid_t st_gid;         /* идентификатор группы-владельца */
+        dev_t st_rdev;        /* тип устройства 4*/
+                              /* (если это устройство) */
+        off_t st_size;        /* общий размер в байтах  8*/
+        blksize_t st_blksize; /* размер блока ввода-вывода */
+                            	/*в файловой системе 4*/
+        blkcnt_t st_blocks;   /* количество выделенных блоков 8*/
+        time_t st_atime;      /* время последнего доступа */
+        time_t st_mtime;      /* время последней модификации */
+        time_t st_ctime;      /* время последнего изменения */
 };
 
 /*________________________________________________________________________________________*/
@@ -79,14 +80,15 @@ struct stat {
 ** если искомая запись не найдена или произошла ошибка.  
 */
 
-struct passwd {
-        char    *pw_name;       /* имя пользователя */
-        char    *pw_passwd;     /* пароль пользователя */
-        uid_t   pw_uid;         /* id пользователя */
-        gid_t   pw_gid;         /* id группы */
-        char    *pw_gecos;      /* настоящее имя */
-        char    *pw_dir;        /* домашний каталог */
-        char    *pw_shell;      /* программа-оболочка */
+struct passwd
+{
+        char *pw_name;   /* имя пользователя */
+        char *pw_passwd; /* пароль пользователя */
+        uid_t pw_uid;    /* id пользователя */
+        gid_t pw_gid;    /* id группы */
+        char *pw_gecos;  /* настоящее имя */
+        char *pw_dir;    /* домашний каталог */
+        char *pw_shell;  /* программа-оболочка */
 };
 
 /*________________________________________________________________________________________*/
@@ -97,11 +99,12 @@ struct passwd {
 ** Структура group определена в <grp.h>
 */
 
-struct group {
-        char    *gr_name;        /* название группы */
-        char    *gr_passwd;      /* пароль группы */
-        gid_t   gr_gid;          /* идентификатор группы */
-        char    **gr_mem;        /* члены группы */
+struct group
+{
+        char *gr_name;   /* название группы */
+        char *gr_passwd; /* пароль группы */
+        gid_t gr_gid;    /* идентификатор группы */
+        char **gr_mem;   /* члены группы */
 };
 
 /*________________________________________________________________________________________*/
@@ -144,3 +147,30 @@ int main()
 
 /* "%hu" is an unsigned short int which is 16 bit. */
 /* printf("%lu\n", sizeof(int)); */
+
+/*________________________________________________________________________________________*/
+
+#include <stdarg.h>
+
+int	sumsum(int num, ...)
+{
+	int sum = 0;
+	int count = 0;
+	va_list argptr;
+
+	va_start(argptr, num);
+	while (count < num)
+	{
+		sum += va_arg(argptr, int);
+		count++;
+	}
+	va_end(argptr);
+	return (sum);
+}
+
+int main (int ac, char **av)
+{
+	int total;
+	total = sumsum(5, 3, 5, 7, 6, 4);
+	printf("total = %d\n", total);
+}
