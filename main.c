@@ -40,11 +40,12 @@ int main(int argc, char* argv[])
 		mydir = opendir(".");
     while((myfile = readdir(mydir)) != NULL)
     {
+	
         stat(myfile->d_name, &mystat);    
         //printf("%lld",mystat.st_size);
-        //fake_printf("%s  ", myfile->d_name);
+        fake_printf_la("%n%s", myfile->d_name, mystat.st_size);
 		//fake_printf("%h  ", &mystat.st_nlink);
-		my_putnbr(mystat.st_nlink);
+		//my_putnbr(mystat.st_nlink);
 		write(1, "\n", 1);
 		//printf("%lld", mystat->st_size);
     }

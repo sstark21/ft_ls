@@ -11,27 +11,38 @@ void	my_putnbr(size_t n)
 		ft_putchar(n + '0');
 }
 
-void fake_printf(char *str, void *data)
-{
-    int i;
 
-    i = 0;
-    while ((str[i] != '%' && str[i + 1] != 's') || (str[i] != '%' && str[i + 1] != 'h'))
-    {
-        write(1, &str[i], 1);
-        i++;
-    }
-    if (str[i+1] == 's')
-        ft_putendl((char *) data);
-    if (str[i+1] == 'h')
-        my_putnbr((unsigned short) &data);
-    // if (str[i+2])
-    // {
-    //     i += 2;
-    //     while (str[i])
-    //     {
-    //         write (1, &str[i], 1);
-    //         i++;
-    //     }
-    // }
+void	print_name(char *str)
+{
+	ft_putendl(str);
+}
+
+void	print_size(size_t size)
+{
+	my_putnbr(size);
+}
+
+void	fake_printf_la(const char *str, ... )
+{
+	int i;
+	va_list vl;
+	va_start(vl, str);
+
+	i = 0;
+	while (str[i])
+	{
+		
+		if (str[i] == '%')
+		{
+			if (str[i + 1] == 'n')
+				print_name(va_arg(vl, char*));
+			if (str[i + 1] == 's')
+				print_size(va_arg(vl, size_t));
+		}
+		// else
+		// 	write(1, &str[i], 1);
+		i++;
+		
+	}
+	va_end(vl);
 }
