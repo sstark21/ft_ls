@@ -191,7 +191,7 @@ int main (int ac, char **av)
 
 /*  My flags
 
-%a - доступ chmod
+%p - доступ chmod
 %l - кол-во жестких ссылок
 %u - имя создателя
 %y - год изменения

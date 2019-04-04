@@ -43,13 +43,15 @@ int main(int argc, char* argv[])
 	
         stat(myfile->d_name, &mystat);    
         //printf("%lld",mystat.st_size);
-        fake_printf_la("%n%s", myfile->d_name, mystat.st_size);
-		//fake_printf("%h  ", &mystat.st_nlink);
+        fake_printf_la("%p  %s %n ", mystat.st_mode, myfile->d_type, mystat.st_size, myfile->d_name);
+		//fake_printf_la("%s", myfile->d_type);
+		//printf("%c\n", myfile->d_type);
 		//my_putnbr(mystat.st_nlink);
 		write(1, "\n", 1);
 		//printf("%lld", mystat->st_size);
     }
 	//printf("%lu\n%lu\n%lu\n", sizeof(int), sizeof(unsigned short), sizeof(unsigned short*));
 	//printf("%lu\n", sizeof(mystat.st_rdev));
+	//printf("%lu\n", sizeof(mode_t));
     closedir(mydir);
 }

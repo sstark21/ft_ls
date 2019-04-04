@@ -22,6 +22,28 @@ void	print_size(size_t size)
 	my_putnbr(size);
 }
 
+void print_permissions(mode_t mode, size_t c) 
+{
+	char *buf;
+	size_t i;
+	const char *chars;
+
+	i = 1;
+	buf = malloc(11);
+	chars = "-rwxrwxrwx";
+	if (c == 4)
+		buf[0] = 'd';
+	else
+		buf[0] = '-';
+	while (i < 10) 
+	{
+		buf[i] = (mode & (1 << (9-i))) ? chars[i] : '-';
+		i++;
+	}
+	buf[11] = '\0';
+	print_name(buf);
+}
+
 void	fake_printf_la(const char *str, ... )
 {
 	int i;
@@ -38,9 +60,11 @@ void	fake_printf_la(const char *str, ... )
 				print_name(va_arg(vl, char*));
 			if (str[i + 1] == 's')
 				print_size(va_arg(vl, size_t));
+			if (str[i+1] == 'p')
+				print_permissions(va_arg(vl, size_t), va_arg(vl, size_t));
 		}
-		// else
-		// 	write(1, &str[i], 1);
+		if (str[i] != '%' && str[i] != 'n' && str[i] != 's' && str[i] != 'p')
+			write(1, &str[i], 1);
 		i++;
 		
 	}
