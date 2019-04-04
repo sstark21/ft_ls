@@ -1,0 +1,1 @@
+git add fake_printf.c main.c ft_ls.h konspekt_ls.c save.sh && git commit -m "1% ready" && git push
