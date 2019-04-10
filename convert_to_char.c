@@ -65,6 +65,7 @@ void	link_count(size_t link, size_t spaces)
 	printf("===%lu===", link);
 	while((link_copy = link_copy / 10) >= 1)
 		diff++;
+	printf("===%lu===", diff);
 	//printf("-- %lu == %lu --", spaces, diff);
 	// while ((spaces = spaces / 10) >= 1 && spaces < diff)
 	// 	{
