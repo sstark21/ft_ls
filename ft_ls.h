@@ -9,9 +9,9 @@
 #include <stdarg.h>
 
 
-
-void    fake_printf_la(const char *str, ... );
+void	print_permissions(mode_t st_mode, size_t d_type);
+void	link_count(size_t link, size_t spaces);
 void	my_putnbr(size_t n);
-void	print_size(size_t size);
-void	print_name(char *str);
-void    print_permissions(mode_t mode, size_t c);
+void	find_flags(char *flags, char *dir);
+void	l_flag(char *dir);
+size_t	find_max(char *dir, int flags);

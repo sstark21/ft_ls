@@ -8,6 +8,27 @@
 #include <stdio.h>
 
 /*
+◦ write
+◦ opendir
+◦ readdir
+◦ closedir 
+◦ stat
+◦ lstat
+◦ getpwuid 
+◦ getgrgid 
+◦ listxattr -  выводит список названий расширенных атрибутов
+◦ getxattr 
+◦ time
+◦ ctime
+◦ readlink 
+◦ malloc
+◦ free
+◦ perror
+◦ strerror 
+◦ exit
+*/
+
+/*
 **      ls flags
 **
 ** -a включать в список файлы с именем, начинающимся с точки (показывать скрытые файлы).
