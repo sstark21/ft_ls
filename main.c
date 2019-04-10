@@ -1,34 +1,5 @@
 #include "ft_ls.h"
 
-/*
-
-int	main(int ac, char **av)
-{
-	DIR *dir;
-	struct dirent *sd;
-	struct stat *mystat;
-	char buf[512];
-
-	dir = opendir(".");
-	if (dir == NULL)
-	{
-		printf("Error! Unable to open directory.\n");
-		exit (1);
-	}
-	while ((sd=readdir(dir)) != NULL)
-		stat(dir->d_name, &mystat);
-		printf("%s  ", sd->d_name);
-		printf("%lld", mystat->st_size); 
-	write (1, "\n", 1);
-	
-	//
-	//sprintf(buf, "%s", ".", sd->d_name);
-	//stat(buf, &mystat);
-	closedir(dir);
-	return (0);
-}
-*/
-
 void	find_flags(char *flags, char *dir)
 {
 	int i;

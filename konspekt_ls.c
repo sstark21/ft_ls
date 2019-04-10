@@ -85,9 +85,15 @@ struct stat
         blksize_t st_blksize; /* размер блока ввода-вывода */
                             	/*в файловой системе 4*/
         blkcnt_t st_blocks;   /* количество выделенных блоков 8*/
-        time_t st_atime;      /* время последнего доступа */
-        time_t st_mtime;      /* время последней модификации */
-        time_t st_ctime;      /* время последнего изменения */
+        struct timespec st_atimespec;   /* время последнего доступа */
+        struct timespec st_mtimespec;   /* время последней модификации */
+        struct timespec st_сtimespec;   /* время последнего изменения */
+};
+
+struct timespec
+{
+	time_t tv_sec;	/* ordinary sec from 1970.01.01 */
+	time_t tv_nsec;	/* nanosec */
 };
 
 /*________________________________________________________________________________________*/
