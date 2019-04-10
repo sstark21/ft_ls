@@ -54,14 +54,18 @@ void	l_flag(char *dir)
     struct dirent *myfile;
     struct stat mystat;
 	size_t spaces;
+	struct passwd *passw;
+	struct tm *time;
 
     mydir = opendir(dir);
 	spaces = find_max(dir, 1);
 	while((myfile = readdir(mydir)) != NULL)
 	{
 		stat(myfile->d_name, &mystat);
+		passw = getpwuid(mystat.st_uid);
 		print_permissions(mystat.st_mode, (size_t)myfile->d_type);
 		link_count((size_t)mystat.st_nlink, spaces);
+		ft_putendl(passw->pw_name);
 		write(1, "\n", 1);
 	}
 }

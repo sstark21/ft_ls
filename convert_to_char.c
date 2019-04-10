@@ -60,18 +60,23 @@ void	link_count(size_t link, size_t spaces)
 {
 	size_t diff;
 	size_t link_copy;
+	size_t spaces_diff;
 
+	diff = 0;
+	spaces_diff = 0;
 	link_copy = link;
-	printf("===%lu===", link);
 	while((link_copy = link_copy / 10) >= 1)
 		diff++;
-	printf("===%lu===", diff);
-	//printf("-- %lu == %lu --", spaces, diff);
-	// while ((spaces = spaces / 10) >= 1 && spaces < diff)
-	// 	{
-	// 		write(1, " ", 1);
-	// 		printf("-- %lu --", spaces);
-	// 	}
-	// my_putnbr(link);
+	while((spaces = spaces / 10) >= 1)
+		spaces_diff++;
+	while((spaces_diff - diff) > 0)
+		{
+			write(1, " ", 1);
+			diff++;
+		}
+	my_putnbr(link);
+	write(1, "  ", 1);
 }
+
+
 
