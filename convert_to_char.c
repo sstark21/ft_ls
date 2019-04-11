@@ -89,23 +89,28 @@ void	space_count(size_t link, size_t spaces)
 	write(1, "  ", 1);
 }
 
-void	print_time(size_t time, char flags)
+
+/*
+** (((time / YEAR) - 2) / 4) * (YEAR / 365)) - поправка на високосный год
+** кол-во лет - 2(потому что первый вис.год 1972), каждые 4ый год-вис. * на 1 день в сек
+*/
+void	print_time(size_t time)
 {
 	char **months;
+	int *months_sec;
+	short year;
+	short month;
+	short day;
+	short hour;
+	short sec;
 
-	months = ("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");  
-	write(1, "  ", 2);
-	if (flags == 'Y')
-	{
-		time = (time / 31536000) + 1970;
-		my_putnbr(time);
-	}
-	if (flags == 'M')
-	{
+	months[12] = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};  
+	months_sec[12] = {31*DAY, 28*DAY, 31*DAY, 30*DAY, 31*DAY, 30*DAY, 31*DAY, 31*DAY, 30*DAY, 31*DAY, 30*DAY, 31*DAY};
+	write(1, "  " , 2);
+	year = ((time - ((((time / YEAR) - 2) / 4) * (YEAR / 365))) / YEAR) + 1970;
+	month = ((time - ((((time / YEAR) - 2) / 4) * (YEAR / 365))) % YEAR);
+	my_putnbr(year);
 
-	}
 	write(1, "  ", 2);
 }
-
-
  

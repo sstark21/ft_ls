@@ -27,6 +27,7 @@ void	l_flag(char *dir)
 	size_t spaces;
 	struct passwd *passw;
 	struct tm *time;
+	struct group *gr;
 	size_t size;
 
     mydir = opendir(dir);
@@ -36,13 +37,18 @@ void	l_flag(char *dir)
 	{
 		stat(myfile->d_name, &mystat);
 		passw = getpwuid(mystat.st_uid);
+		gr = getgrgid(mystat.st_gid);
 		print_permissions(mystat.st_mode, (size_t)myfile->d_type);
 		space_count((size_t)mystat.st_nlink, spaces);
 		ft_putendl(passw->pw_name);
-		print_time((size_t)mystat.st_mtimespec.tv_sec, 'Y');
+		write(1, "  ", 2);
+		ft_putendl(gr->gr_name);
+		write(1, "  ", 2);
+		//print_time((size_t)mystat.st_mtimespec.tv_sec);
 		space_count((size_t)mystat.st_size, size);
 		write(1, "\n", 1);
 	}
+	closedir(mydir);
 }
 
 int main(int argc, char* argv[])
