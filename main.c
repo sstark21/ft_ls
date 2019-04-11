@@ -44,7 +44,7 @@ void	l_flag(char *dir)
 		write(1, "  ", 2);
 		ft_putendl(gr->gr_name);
 		write(1, "  ", 2);
-		//print_time((size_t)mystat.st_mtimespec.tv_sec);
+		print_time((size_t)mystat.st_mtimespec.tv_sec);
 		space_count((size_t)mystat.st_size, size);
 		write(1, "\n", 1);
 	}

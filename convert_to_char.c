@@ -96,20 +96,22 @@ void	space_count(size_t link, size_t spaces)
 */
 void	print_time(size_t time)
 {
-	char **months;
-	int *months_sec;
+	char	*months[4];
+	//int		months_sec[] = {31*DAY, 28*DAY, 31*DAY, 30*DAY, 31*DAY, 30*DAY, 31*DAY, 31*DAY, 30*DAY, 31*DAY, 30*DAY, 31*DAY};
 	short year;
 	short month;
 	short day;
 	short hour;
 	short sec;
 
-	months[12] = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};  
-	months_sec[12] = {31*DAY, 28*DAY, 31*DAY, 30*DAY, 31*DAY, 30*DAY, 31*DAY, 31*DAY, 30*DAY, 31*DAY, 30*DAY, 31*DAY};
+	months[0] = "JAN\0FEB\0MAR\0APR\0MAY\0JUN\0JUL\0AUG\0SEP\0OCT\0NOV\0DEC";
+	months[1] = months[0];
+	months[3] = "31\0 28\0 31\0 30\0 31\0 30\0 31\0 31\0 30\0 31\0 30\0 31";
+	months[4] = months[3];
 	write(1, "  " , 2);
 	year = ((time - ((((time / YEAR) - 2) / 4) * (YEAR / 365))) / YEAR) + 1970;
 	month = ((time - ((((time / YEAR) - 2) / 4) * (YEAR / 365))) % YEAR);
-	my_putnbr(year);
+	//my_putnbr(year);
 
 	write(1, "  ", 2);
 }
