@@ -27,16 +27,20 @@ void	l_flag(char *dir)
 	size_t spaces;
 	struct passwd *passw;
 	struct tm *time;
+	size_t size;
 
     mydir = opendir(dir);
 	spaces = find_max(dir, 1);
+	size = find_max(dir, 2);
 	while((myfile = readdir(mydir)) != NULL)
 	{
 		stat(myfile->d_name, &mystat);
 		passw = getpwuid(mystat.st_uid);
 		print_permissions(mystat.st_mode, (size_t)myfile->d_type);
-		link_count((size_t)mystat.st_nlink, spaces);
+		space_count((size_t)mystat.st_nlink, spaces);
 		ft_putendl(passw->pw_name);
+		print_time((size_t)mystat.st_mtimespec.tv_sec, 'Y');
+		space_count((size_t)mystat.st_size, size);
 		write(1, "\n", 1);
 	}
 }

@@ -52,11 +52,22 @@ size_t	find_max(char *dir, int flags)
 			if (mystat.st_nlink > mystat_max.st_nlink)
 				mystat_max = mystat;
 		}
+		return((size_t)mystat_max.st_nlink);
 	}
-	return((size_t)mystat_max.st_nlink);
+	if (flags == 2)
+	{
+		while((myfile = readdir(mydir)) != NULL)
+		{
+			stat(myfile->d_name, &mystat);
+			if (mystat.st_size > mystat_max.st_size)
+				mystat_max = mystat;
+		}
+		return((size_t)mystat_max.st_size);
+	}
+	return (0);
 }
 
-void	link_count(size_t link, size_t spaces)
+void	space_count(size_t link, size_t spaces)
 {
 	size_t diff;
 	size_t link_copy;
@@ -78,5 +89,23 @@ void	link_count(size_t link, size_t spaces)
 	write(1, "  ", 1);
 }
 
+void	print_time(size_t time, char flags)
+{
+	char **months;
+
+	months = ("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");  
+	write(1, "  ", 2);
+	if (flags == 'Y')
+	{
+		time = (time / 31536000) + 1970;
+		my_putnbr(time);
+	}
+	if (flags == 'M')
+	{
+
+	}
+	write(1, "  ", 2);
+}
 
 
+ 
