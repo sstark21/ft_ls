@@ -19,4 +19,4 @@ void	my_putnbr(size_t n);
 void	find_flags(char *flags, char *dir);
 void	l_flag(char *dir);
 size_t	find_max(char *dir, int flags);
-void	print_time(size_t time);
+void	print_time(char *time);

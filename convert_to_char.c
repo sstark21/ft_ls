@@ -20,6 +20,8 @@ void	print_permissions(mode_t st_mode, size_t d_type)
 	i = 0;
 	if (d_type == 4)
 		write(1, "d", 1);
+	else if (d_type == 10)
+		write(1, "l", 1);
 	else
 		write(1, "-", 1);
 	while (i < 9)
@@ -89,35 +91,15 @@ void	space_count(size_t link, size_t spaces)
 	write(1, "  ", 1);
 }
 
-
-/*
-** (((time / YEAR) - 2) / 4) * (YEAR / 365)) - поправка на високосный год
-** кол-во лет - 2(потому что первый вис.год 1972), каждые 4ый год-вис. * на 1 день в сек
-*/
-void	print_time(size_t time)
+void	print_time(char *time)
 {
-	//int		months_sec[] = {31*DAY, 28*DAY, 31*DAY, 30*DAY, 31*DAY, 30*DAY, 31*DAY, 31*DAY, 30*DAY, 31*DAY, 30*DAY, 31*DAY};
-	short year;
-	short month;
-	short day;
-	short hour;
-	short sec;
+	short i;
 
-	write(1, "  " , 2);
-	year = ((time - ((((time / YEAR) - 2) / 4) * (YEAR / 365))) / YEAR) + 1970;
-	month = ((time - ((((time / YEAR) - 2) / 4) * (YEAR / 365))) % YEAR);
-	//my_putnbr(year);
-
-	write(1, "  ", 2);
+	i = 4;
+	while (i <= 15)
+	{
+		write(1, &time[i], 1);
+		i++;
+	}
+	write(1, " ", 1);
 }
-
-char *mschimme(size_t time)
-{
-	char	*months[4];
-
-	months[0] = "JAN\0FEB\0MAR\0APR\0MAY\0JUN\0JUL\0AUG\0SEP\0OCT\0NOV\0DEC";
-	months[1] = "31\0 28\0 31\0 30\0 31\0 30\0 31\0 31\0 30\0 31\0 30\0 31";
-	months[2] = "31\0 29\0 31\0 30\0 31\0 30\0 31\0 31\0 30\0 31\0 30\0 31";
-	
-}
- 
