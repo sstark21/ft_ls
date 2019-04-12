@@ -52,11 +52,23 @@ void	l_flag(char *dir)
 	}
 	closedir(mydir);
 }
+void	no_flags(char *dir)
+{
+	DIR *mydir;
+	struct dirent *myfile;
+
+	mydir = opendir(dir);
+	while((myfile = readdir(mydir) != NULL))
+	{
+		ft_putendl(myfile->d_name);
+		write(1, "  ", 2);
+	}
+}
 
 int main(int argc, char* argv[])
 {
 	if (argc == 2)
-		find_flags(argv[1], ".");
+		find_flags(argv[3], ".");
 	else
 		find_flags(argv[1], argv[2]);	
 

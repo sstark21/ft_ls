@@ -20,3 +20,4 @@ void	find_flags(char *flags, char *dir);
 void	l_flag(char *dir);
 size_t	find_max(char *dir, int flags);
 void	print_time(char *time);
+void	no_flags(char *dir);

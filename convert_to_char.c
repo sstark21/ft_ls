@@ -54,6 +54,7 @@ size_t	find_max(char *dir, int flags)
 			if (mystat.st_nlink > mystat_max.st_nlink)
 				mystat_max = mystat;
 		}
+
 		return((size_t)mystat_max.st_nlink);
 	}
 	if (flags == 2)
