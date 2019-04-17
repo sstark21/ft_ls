@@ -54,7 +54,6 @@ size_t	find_max(char *dir, int flags)
 			if (mystat.st_nlink > mystat_max.st_nlink)
 				mystat_max = mystat;
 		}
-
 		return((size_t)mystat_max.st_nlink);
 	}
 	if (flags == 2)
@@ -103,4 +102,32 @@ void	print_time(char *time)
 		i++;
 	}
 	write(1, " ", 1);
+}
+
+
+int	recursive_flag(char *dir)
+{
+	DIR *mydir;
+	struct dirent *myfile;
+
+	mydir = opendir(dir);
+	write(1, "HERE", 5);
+	if(!myfile)
+		exit (0);
+	while ((myfile = readdir(mydir)) != NULL)
+	{
+		ft_putendl(myfile->d_name);
+		write(1, "  ", 2);
+		if(myfile)
+		{
+			if(myfile->d_name == '.' || myfile->d_name == '..')
+			myfile = readdir(mydir);
+			printf("--%s--", myfile->d_name);
+			recursive_flag((char *)mydir);
+		}
+		else
+			closedir(mydir);
+	}
+	closedir(mydir);
+	return (0);
 }
