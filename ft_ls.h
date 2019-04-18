@@ -19,3 +19,21 @@ void	print_time(char *time);
 void	no_flags(char *dir);
 int 	recursive_flag(char *dir);
 //void	find_flags(int ac, char **av);
+
+
+# define DEBst() printf("\t\033[0;31m%d\033[0m in:\t%s \t\t", __LINE__, __func__); 
+# define DEBend() printf("\n"); 
+# define DEBit(name, x) printf("\033[1;35m%s\033[0m == %p ", (name), (x)); 
+# define DEBintt(name, x) printf("\033[1;35m%s\033[0m == %d ", (name), (x)); 
+# define DEBlt(name, x) printf("\033[1;35m%s\033[0m == %zu ", (name), (x)); 
+# define DEBtextt(name, x) printf("[\033[1;35m%s\033[0m] == [%s] ", (name), (x)); 
+# define DEBmesst(name) printf("\033[1;36m%s\033[0m ", (name)); 
+# define DEBfunc() printf("\033[0;33mEntering\033[0m MY:\t\033[0;33m%s\033[0m of file \"%s\"\n", __func__, __FILE__); 
+# define DEB() printf("\t\033[0;31m%d\033[0m in:\t%s\n", __LINE__, __func__); 
+# define DEBex(name) printf("\033[0;32mExiting \033[0m MY:\t\033[0;32m%s\033[0m,%s\n\n", __func__, (name)); 
+# define DEBprog() printf("\n\nENTRANCE IN \033[0;33m~~~~~~~~~~~~~~~~%s~~~~~~~~~~~~~~~~\033[0m\n", __FILE__); 
+# define DEBm() printf("Malloc failed at line \033[0;31m%d\033[0m in function: %s\n", __LINE__, __func__); 
+# define DEBi(name, x) printf("\033[0;31m%d\033[0m str in func: %s, \"\033[1;35m%s\033[0m\" adress %p\n", __LINE__, __func__, (name), (x)); 
+# define DEBtext(name, x) printf("\033[0;31m%d\033[0m str in func: %s, arr:[%s] == [%s]\n", __LINE__, __func__, (name), (x)); 
+# define DEBl(name, x) printf("\033[0;31m%d\033[0m str in func: %s, %s == %zu\n", __LINE__, __func__, (name), (x)); 
+# define DEBint(name, x) printf("\033[0;31m%d\033[0m str in func: %s, %s == %d\n", __LINE__, __func__, (name), (x)); 
