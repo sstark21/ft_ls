@@ -106,28 +106,33 @@ void	print_time(char *time)
 
 
 int	recursive_flag(char *dir)
-{																				DEBfunc()
+{																				
 	DIR *mydir;
 	struct dirent *myfile;
-
-	mydir = opendir(dir); DEB()
+	mydir = opendir(dir); //DEB()
 	// dir = "./git/branches";
 	// mydir = opendir(dir); DEB()
-
-	if(!myfile)
+// 	if (!(myfile))
+// 	{
+// //		closedir(mydir);
+// 		myfile = readdir(mydir);
+// 		//printf("%s\n", myfile->d_name);
+// 	}
+	if (mydir)
 	{
-		closedir(mydir);
 		myfile = readdir(mydir);
 	}
-	myfile = readdir(mydir); DEB()
+	
 	while (myfile)
 	{
-		DEBst() DEBtextt("DIR_name", myfile->d_name) DEBend()
+		ft_putendl(myfile->d_name);
+		write(1, "\n", 1);
+//DEBst() DEBtextt("DIR_name", myfile->d_name) DEBend()
 		if (!((ft_strcmp(myfile->d_name, ".") == 0) || (ft_strcmp(myfile->d_name, "..") == 0)))
 		{
 			if (((size_t)myfile->d_type == 4))
 			{
-				recursive_flag(myfile->d_name);
+				recursive_flag(myfile->d_name);				
 			}
 		}
 		// if (!((ft_strcmp(myfile->d_name, ".") == 0) || (ft_strcmp(myfile->d_name, "..") == 0)) && ((size_t)myfile->d_type == 4)){
@@ -144,10 +149,16 @@ int	recursive_flag(char *dir)
 		// 	recursive_flag((char *)mydir);
 		// }
 		// else
-		// 	closedir(mydir);
-		myfile = readdir(mydir);
+		// closedir(mydir);
+		if (mydir)
+			myfile = readdir(mydir);
+		else
+		{
+			break;
+		}
+		
 	}
-	//closedir(mydir);
-	DEBst() DEBmesst("VOVA! SKABLDJAD!!!!") DEBend()
+	// closedir(mydir);
+	//DEBst() DEBmesst("VOVA! SKABLDJAD!!!!") DEBend()
 	return (0);
 }
