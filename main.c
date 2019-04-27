@@ -105,7 +105,7 @@ void	no_flags(char *dir)
 
 int main(int argc, char* argv[])
 {
-//	DEBprog()
+	DEBprog()
 	int i;
 	// if (argc == 2)
 	// 	find_flags(argv[3], ".");

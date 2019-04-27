@@ -18,6 +18,7 @@ size_t	find_max(char *dir, int flags);
 void	print_time(char *time);
 void	no_flags(char *dir);
 int 	recursive_flag(char *dir);
+void	my_putendl(char *str, size_t len);
 //void	find_flags(int ac, char **av);
 
 
