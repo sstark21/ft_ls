@@ -21,6 +21,30 @@ int 	recursive_flag(char *dir);
 void	my_putendl(char *str, size_t len);
 //void	find_flags(int ac, char **av);
 
+typedef struct			permissions
+{
+	size_t				perm;
+	size_t				type_file;
+}						file_perm;
+
+typedef struct			file_info
+{
+    file_perm			perm;
+    size_t				links;
+	char				*name;
+	char				*user;
+    char				*group;
+    size_t				size;
+    char				*time;
+	short				hide;
+	struct file_info	*next;
+
+}						lst_inf;
+
+
+lst_inf	*cr_struct(DIR *mydir);
+lst_inf	**cr_lists(char *dir);
+
 
 # define DEBst() printf("\t\033[0;31m%d\033[0m in:\t%s \t\t", __LINE__, __func__); 
 # define DEBend() printf("\n"); 

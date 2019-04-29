@@ -118,24 +118,25 @@ int main(int argc, char* argv[])
 		no_flags((char *)("."));
 		return(0);
 	}
-	if (argv[1][0] != '-' && argc > 2)
-	{
-		while(argv[i])
-		{
-			ft_putendl(argv[i]);
-			write(1, ":\n", 2);
-			no_flags(argv[i]);
-			i++;
-		}
-		return (0);
-	}
-	if (argv[1][0] == '-')
-	{
-		//find_flags(argc, argv);
-		find_flags(argv[1], argv[2]);
-		return (0);
-	}
-	else
-		no_flags(argv[1]);
+	cr_lists(argv[1]);
+	// if (argv[1][0] != '-' && argc > 2)
+	// {
+	// 	while(argv[i])
+	// 	{
+	// 		ft_putendl(argv[i]);
+	// 		write(1, ":\n", 2);
+	// 		no_flags(argv[i]);
+	// 		i++;
+	// 	}
+	// 	return (0);
+	// }
+	// if (argv[1][0] == '-')
+	// {
+	// 	//find_flags(argc, argv);
+	// 	find_flags(argv[1], argv[2]);
+	// 	return (0);
+	// }
+	// else
+	// 	no_flags(argv[1]);
 	return (0);
 }
