@@ -37,7 +37,8 @@ lst_inf	**cr_lists(char *dir)
 	cp_new_st = new_st; 
 	while ((myfile = readdir(mydir)) != NULL)
 	{
-		*new_st->next = cr_struct(mydir);
+		(*new_st)->next = cr_struct(mydir);
+		*new_st = (*new_st)->next;
 	}
 	return (cp_new_st);
 }
