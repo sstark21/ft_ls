@@ -42,7 +42,7 @@ typedef struct			file_info
 }						lst_inf;
 
 
-lst_inf	*cr_struct(DIR *mydir);
+lst_inf	*cr_struct(struct stat mystat); //тут чекать тоже
 lst_inf	**cr_lists(char *dir);
 
 
