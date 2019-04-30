@@ -42,8 +42,8 @@ typedef struct			file_info
 }						lst_inf;
 
 
-lst_inf	*cr_struct(struct stat mystat); //тут чекать тоже
-lst_inf	**cr_lists(char *dir);
+lst_inf	*cr_struct(struct dirent *myfile); //тут чекать тоже
+lst_inf	*cr_lists(char *dir);
 
 
 # define DEBst() printf("\t\033[0;31m%d\033[0m in:\t%s \t\t", __LINE__, __func__); 
