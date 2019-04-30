@@ -21,14 +21,6 @@ lst_inf	*cr_struct(struct dirent *myfile) //начал тут
 	inf->size = (size_t)(mystat.st_size);
 	inf->time = asctime(localtime(&mystat.st_mtimespec.tv_sec));
 	inf->next = NULL;
-	//cp_inf = inf;
-// 	printf("%s\n", inf.name);
-// 	printf("%lu\n", inf.links);
-// 	printf("%s", inf.time);
-// 	printf("%s\n", inf.user);
-// 	printf("%s\n", inf.group);
-// 	printf("%lu\n", inf.size);
-// DEB()
 	return (inf);
 }
 
