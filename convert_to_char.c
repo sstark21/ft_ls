@@ -173,17 +173,38 @@ int		recursive_flag(char *dir)
 	myfile = readdir(mydir);
 	//printf("____%s\n____", myfile->d_name);
 	while ((ft_strcmp(myfile->d_name, ".") == 0) || (ft_strcmp(myfile->d_name, "..") == 0))
+	{		
 		myfile = readdir(mydir);
+		if (!myfile)
+		{
+			closedir(mydir);
+			return (0);
+		}
+	}
+DEB()
 	while(myfile)
+	{
+DEB()
+// 		if (((size_t)myfile->d_type == 4))
+// 		{
+// 			ft_putendl(myfile->d_name);
+// 			write(1, ":", 1);
+// DEB()
+// 			recursive_flag(myfile->d_name);			
+// 		}
+// 		else
+// 			myfile = readdir(mydir);
+	if (!((ft_strcmp(myfile->d_name, ".") == 0) || (ft_strcmp(myfile->d_name, "..") == 0)))
 	{
 		if (((size_t)myfile->d_type == 4))
 		{
-			ft_putendl(myfile->d_name);
-			write(1, ":\n", 2);
 			recursive_flag(myfile->d_name);				
 		}
-		else
-			myfile = readdir(mydir);
+	}
+	if (mydir)
+		myfile = readdir(mydir);
+	else
+		break;
 	}
 	return(0);
 }

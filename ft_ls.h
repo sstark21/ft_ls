@@ -4,7 +4,7 @@
 #include <unistd.h>
 #include <pwd.h>
 #include <time.h>
-#include "libft/libft.h"
+#include "libft/includes/libft.h"
 #include <stdio.h>
 #include <stdarg.h>
 #include <grp.h>
@@ -42,7 +42,7 @@ typedef struct			file_info
 }						lst_inf;
 
 
-lst_inf	*cr_struct(struct dirent *myfile); //тут чекать тоже
+lst_inf	*cr_struct(struct dirent *myfile);
 lst_inf	*cr_lists(char *dir);
 
 

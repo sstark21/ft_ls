@@ -1,1 +1,1 @@
-gcc main.c convert_to_char.c cr_struct.c libft.a -o ft_ls ; ./ft_ls .
+gcc main.c convert_to_char.c cr_struct.c libft.a -o ft_ls ; ./ft_ls -R .

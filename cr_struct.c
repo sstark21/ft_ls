@@ -1,6 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cr_struct.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sstark <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/05/03 17:57:01 by sstark            #+#    #+#             */
+/*   Updated: 2019/05/03 17:57:05 by sstark           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+
 #include "ft_ls.h"
 
-lst_inf	*cr_struct(struct dirent *myfile) //начал тут
+lst_inf	*cr_struct(struct dirent *myfile)
 {
 	lst_inf	*inf;
 	lst_inf cp_inf;
@@ -51,3 +64,4 @@ lst_inf	*cr_lists(char *dir)
 	printf("cp_new_st - %s\n", cp_new_st->name);
 	return (cp_new_st);
 }
+

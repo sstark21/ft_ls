@@ -252,5 +252,10 @@ ________________________________________________________________________________
 7. флаги могут быть как отдельно -a -l - R так и вместе -alR
 8. ioctl - размер экрана
 9. переделать ft_memalloc с exit;
+10. total - https://stackoverflow.com/questions/7401704/what-is-that-total-in-the-very-first-line-after-ls-l
+11. intra - https://forum.intra.42.fr/topics/16298/messages
+12. ft_ls -a /dev/fd - https://unix.stackexchange.com/questions/74454/somethings-special-about-dev-fd-3
+13. stererror - https://www.youtube.com/embed/jyULNpjgC8Y
+14. errors 
 ______________________________________________________________________________________________
 */
