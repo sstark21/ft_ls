@@ -162,6 +162,8 @@ int		recursive_flag(char *dir)
 	DIR *mydir;
 	struct dirent *myfile;
 	mydir = opendir(dir);
+	char *path;
+
 
 	while((myfile = readdir(mydir)) != NULL)
 	{
@@ -181,7 +183,6 @@ int		recursive_flag(char *dir)
 			return (0);
 		}
 	}
-DEB()
 	while(myfile)
 	{
 DEB()
@@ -198,7 +199,7 @@ DEB()
 	{
 		if (((size_t)myfile->d_type == 4))
 		{
-			recursive_flag(myfile->d_name);				
+			recursive_flag(ft_strjoin(ft_strjoin(dir, "/"), myfile->d_name));				
 		}
 	}
 	if (mydir)
