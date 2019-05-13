@@ -6,29 +6,41 @@
 /*   By: sstark <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 13:48:26 by sstark            #+#    #+#             */
-/*   Updated: 2019/05/13 16:45:30 by sstark           ###   ########.fr       */
+/*   Updated: 2019/05/13 19:44:01 by sstark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/ft_ls.h"
 
-void	ioctl_space(char *dir)
+int		find_max_word(char *dir)
 {
-	struct winsize w;
 	char *max_name;
-	unsigned short win_size;
 	DIR *mydir;
 	struct dirent *myfile;
+	
 	mydir = opendir(dir);
-    
-	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
-	win_size = w.ws_row;
-	max_name = (readdir(mydir))->d_name;
-	while(myfile)
+	myfile = readdir(mydir);
+	max_name = myfile->d_name;
+	while (myfile)
     {	
-        if ()
-		myfile = readdir(mydir);
+        if (ft_strlen(max_name) < ft_strlen(myfile->d_name))
+				max_name = myfile->d_name;
+		else
+				myfile = readdir(mydir);
     }
+	return (ft_strlen(max_name));
+}
+
+int		ioctl_space(char *dir)
+{
+	int max_word_len;
+	struct winsize w;
+	unsigned short win_size;
+
+	max_word_len = find_max_word(dir);
+	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
+	win_size = w.ws_col;
+	
 }
 
 int		recursive_flag(char *dir)
@@ -37,12 +49,13 @@ int		recursive_flag(char *dir)
 	struct dirent *myfile;
 	mydir = opendir(dir);
 	char *path;
-
+	
 	while((myfile = readdir(mydir)) != NULL)
 	{
 		my_putendl(myfile->d_name, ft_strlen(myfile->d_name));
 		write(1, "     ", 6);
 	}
+	
 	write(1, "\n\n", 2);
 	mydir = opendir(dir);
 	myfile = readdir(mydir);
@@ -55,6 +68,7 @@ int		recursive_flag(char *dir)
 			return (0);
 		}
 	}
+	
 	while(myfile)
 	{
 		if (!((ft_strcmp(myfile->d_name, ".") == 0) || (ft_strcmp(myfile->d_name, "..") == 0)))

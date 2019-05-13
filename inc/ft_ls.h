@@ -20,6 +20,7 @@ void	print_time(char *time);
 void	no_flags(char *dir);
 int 	recursive_flag(char *dir);
 void	my_putendl(char *str, size_t len);
+int		ioctl_space(char *dir);
 //void	find_flags(int ac, char **av);
 
 typedef struct			permissions
