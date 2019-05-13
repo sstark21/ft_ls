@@ -1,1 +1,1 @@
-git add libft/* libft.a main.c convert_to_char.c ft_ls.h konspekt_ls.c check_flags.c cr_struct.c start.sh save.sh && git commit -m "1% ready" && git push origin master
+git add libft/* libft.a src/* inc/* start.sh save.sh && git commit -m "1% ready" && git push origin master

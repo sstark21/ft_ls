@@ -1,1 +1,1 @@
-gcc main.c convert_to_char.c cr_struct.c libft.a -o ft_ls ; ./ft_ls -R .
+gcc src/main.c src/permissions.c src/cr_struct.c  src/R_flag.c libft.a -o ft_ls ; ./ft_ls -R .

@@ -6,12 +6,11 @@
 /*   By: sstark <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 17:57:01 by sstark            #+#    #+#             */
-/*   Updated: 2019/05/03 17:57:05 by sstark           ###   ########.fr       */
+/*   Updated: 2019/05/13 13:39:52 by sstark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#include "ft_ls.h"
+#include "../inc/ft_ls.h"
 
 lst_inf	*cr_struct(struct dirent *myfile)
 {
