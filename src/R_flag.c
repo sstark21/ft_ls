@@ -6,11 +6,30 @@
 /*   By: sstark <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 13:48:26 by sstark            #+#    #+#             */
-/*   Updated: 2019/05/13 14:25:40 by sstark           ###   ########.fr       */
+/*   Updated: 2019/05/13 16:45:30 by sstark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/ft_ls.h"
+
+void	ioctl_space(char *dir)
+{
+	struct winsize w;
+	char *max_name;
+	unsigned short win_size;
+	DIR *mydir;
+	struct dirent *myfile;
+	mydir = opendir(dir);
+    
+	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
+	win_size = w.ws_row;
+	max_name = (readdir(mydir))->d_name;
+	while(myfile)
+    {	
+        if ()
+		myfile = readdir(mydir);
+    }
+}
 
 int		recursive_flag(char *dir)
 {

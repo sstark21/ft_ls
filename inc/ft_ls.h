@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <grp.h>
+#include <sys/ioctl.h>
 
 void	print_permissions(mode_t st_mode, size_t d_type);
 void	space_count(size_t link, size_t spaces);
