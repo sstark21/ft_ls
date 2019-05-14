@@ -6,7 +6,7 @@
 /*   By: sstark <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 17:57:01 by sstark            #+#    #+#             */
-/*   Updated: 2019/05/13 13:39:52 by sstark           ###   ########.fr       */
+/*   Updated: 2019/05/14 17:10:39 by sstark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ lst_inf	*cr_struct(struct dirent *myfile)
 	struct tm	*time;
 	struct group *gr;
 
+	//printf("---%s---\n", myfile->d_name);
 	if (!(inf = (lst_inf*)malloc(sizeof(lst_inf))))
 		return NULL;
 	stat(myfile->d_name, &mystat);
@@ -33,6 +34,7 @@ lst_inf	*cr_struct(struct dirent *myfile)
 	inf->size = (size_t)(mystat.st_size);
 	inf->time = asctime(localtime(&mystat.st_mtimespec.tv_sec));
 	inf->next = NULL;
+	printf("---%s---\n", inf->name);
 	return (inf);
 }
 
@@ -44,7 +46,7 @@ lst_inf	*cr_lists(char *dir)
 	lst_inf *new_st;
 	lst_inf *cp_new_st;
 	int i;
-
+DEB()
 	mydir = opendir(dir);
 	myfile = readdir(mydir);
 	i = 0;
@@ -52,15 +54,20 @@ lst_inf	*cr_lists(char *dir)
 		myfile = readdir(mydir);
 	new_st = cr_struct(myfile);
 	cp_new_st = new_st;
+	
 	while (myfile)
 	{
+DEB()
 		new_st = (lst_inf*)malloc(sizeof(lst_inf));
 		new_st = cr_struct(myfile);
 		myfile = readdir(mydir);
-		printf("new_st - %s\n", new_st->name);
-		new_st = new_st->next;
+DEB()
+		if (new_st->next)
+			new_st = new_st->next;
+		else
+			break ; 	
 	}
-	printf("cp_new_st - %s\n", cp_new_st->name);
+DEB()
+	//printf("---%s---\n", cp_new_st);
 	return (cp_new_st);
 }
-

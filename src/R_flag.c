@@ -6,7 +6,7 @@
 /*   By: sstark <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 13:48:26 by sstark            #+#    #+#             */
-/*   Updated: 2019/05/13 19:44:01 by sstark           ###   ########.fr       */
+/*   Updated: 2019/05/14 15:56:07 by sstark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,50 +40,70 @@ int		ioctl_space(char *dir)
 	max_word_len = find_max_word(dir);
 	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
 	win_size = w.ws_col;
-	
+	return (win_size);
 }
 
 int		recursive_flag(char *dir)
 {
-	DIR *mydir;
-	struct dirent *myfile;
-	mydir = opendir(dir);
-	char *path;
+	// DIR *mydir;
+	// struct dirent *myfile;
+	// mydir = opendir(dir);
+	// char *path; 
+	lst_inf *first;
+	lst_inf *cp_first;
 	
-	while((myfile = readdir(mydir)) != NULL)
+	first = cr_lists(dir);
+	printf("first - %s\n", first->name);
+	// while((myfile = readdir(mydir)) != NULL)
+	// {
+	// 	my_putendl(myfile->d_name, ft_strlen(myfile->d_name));
+	// 	write(1, "     ", 6);
+	// }
+	// write(1, "\n\n", 2);
+	// mydir = opendir(dir);
+	// myfile = readdir(mydir);
+
+	// while ((ft_strcmp(myfile->d_name, ".") == 0) || (ft_strcmp(myfile->d_name, "..") == 0))
+	// {		
+	// 	myfile = readdir(mydir);
+	// 	if (!myfile)
+	// 	{
+	// 		closedir(mydir);
+	// 		return (0);
+	// 	}
+	// }
+	// while(myfile)
+	// {
+	// 	if (((size_t)myfile->d_type == 4))
+	// 	{
+	// 		my_putendl(ft_strjoin(ft_strjoin(dir, "/"), myfile->d_name), ft_strlen(ft_strjoin(ft_strjoin(dir, "/"), myfile->d_name)));
+	// 		write(1, ":\n", 3);
+	// 		recursive_flag(ft_strjoin(ft_strjoin(dir, "/"), myfile->d_name));				
+	// 	}
+	// 	if (mydir)
+	// 		myfile = readdir(mydir);
+	// 	else
+	// 		break;
+	// }
+	while(first->next)
 	{
-		my_putendl(myfile->d_name, ft_strlen(myfile->d_name));
-		write(1, "     ", 6);
+		printf("LOL");
+		printf("first_name %s\n", first->name);
+		first = first->next;
 	}
-	
-	write(1, "\n\n", 2);
-	mydir = opendir(dir);
-	myfile = readdir(mydir);
-	while ((ft_strcmp(myfile->d_name, ".") == 0) || (ft_strcmp(myfile->d_name, "..") == 0))
-	{		
-		myfile = readdir(mydir);
-		if (!myfile)
-		{
-			closedir(mydir);
-			return (0);
-		}
-	}
-	
-	while(myfile)
+	while(first->next)
 	{
-		if (!((ft_strcmp(myfile->d_name, ".") == 0) || (ft_strcmp(myfile->d_name, "..") == 0)))
+		printf("HERE\n");
+		if (first->perm.type_file == 4)
 		{
-			if (((size_t)myfile->d_type == 4))
-			{
-                my_putendl(ft_strjoin(ft_strjoin(dir, "/"), myfile->d_name), ft_strlen(ft_strjoin(ft_strjoin(dir, "/"), myfile->d_name)));
-                write(1, ":\n", 3);
-				recursive_flag(ft_strjoin(ft_strjoin(dir, "/"), myfile->d_name));				
-			}
+			my_putendl(ft_strjoin(ft_strjoin(dir, "/"), first->name), ft_strlen(ft_strjoin(ft_strjoin(dir, "/"), first->name)));
+			write(1, ":\n", 3);
+			recursive_flag(ft_strjoin(ft_strjoin(dir, "/"), first->name));				
 		}
-		if (mydir)
-			myfile = readdir(mydir);
+		// if (mydir)
+		// 	myfile = readdir(mydir);
 		else
-			break;
+			first = first->next;
 	}
 	return(0);
 }
