@@ -6,7 +6,7 @@
 /*   By: sstark <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 13:48:26 by sstark            #+#    #+#             */
-/*   Updated: 2019/05/14 15:56:07 by sstark           ###   ########.fr       */
+/*   Updated: 2019/05/15 15:48:30 by sstark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int		recursive_flag(char *dir)
 	
 	first = cr_lists(dir);
 	printf("first - %s\n", first->name);
+	printf("second - %s\n", first->next->name);
 	// while((myfile = readdir(mydir)) != NULL)
 	// {
 	// 	my_putendl(myfile->d_name, ft_strlen(myfile->d_name));
