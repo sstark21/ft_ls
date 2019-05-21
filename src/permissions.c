@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   convert_to_char.c                                  :+:      :+:    :+:   */
+/*   permissions.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sstark <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: rootuser <rootuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 13:40:44 by sstark            #+#    #+#             */
-/*   Updated: 2019/05/13 13:49:07 by sstark           ###   ########.fr       */
+/*   Updated: 2019/05/21 12:01:02 by rootuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ void	my_putendl(char *str, size_t len)
 	while(len--)
 		write(1, str++, 1);
 }
+
+/*
+	эта функция перчатает разрешения сравнивая побитово с образцом
+*/
 
 void	print_permissions(mode_t st_mode, size_t d_type)
 {
@@ -53,6 +57,10 @@ void	print_permissions(mode_t st_mode, size_t d_type)
 	write(1, "  ", 2);
 }
 
+/*
+	эта штука ищет максимальное значение в директории для подсчета пробелов
+*/
+
 size_t	find_max(char *dir, int flags)
 {
 	DIR *mydir;
@@ -64,7 +72,7 @@ size_t	find_max(char *dir, int flags)
 	mystat_max = mystat;
 	mydir = opendir(dir);
 	i = 0;
-	if (flags == 1)
+	if (flags == 1) /* пока флаг 1 для ссылок*/
 	{
 		while((myfile = readdir(mydir)) != NULL)
 		{
@@ -74,7 +82,7 @@ size_t	find_max(char *dir, int flags)
 		}
 		return((size_t)mystat_max.st_nlink);
 	}
-	if (flags == 2)
+	if (flags == 2) /* флаг 2 для размера*/
 	{
 		while((myfile = readdir(mydir)) != NULL)
 		{
@@ -87,6 +95,9 @@ size_t	find_max(char *dir, int flags)
 	return (0);
 }
 
+/*
+	тут используя результат предыдущей функции печатаем необходимое число пробельчиков
+*/
 void	space_count(size_t link, size_t spaces)
 {
 	size_t diff;
@@ -108,6 +119,8 @@ void	space_count(size_t link, size_t spaces)
 	my_putnbr(link);
 	write(1, "  ", 1);
 }
+
+/* эта нанофункция обрезает формат времени до необходимого для флага -l*/
 
 void	print_time(char *time)
 {

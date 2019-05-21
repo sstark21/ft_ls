@@ -41,6 +41,10 @@
 	// }
 	// //return (flags);
 //}
+
+/*
+	эт вообще временная шляпа
+*/
 void	find_flags(char *flags, char *dir)
 {
 	int i;
@@ -66,6 +70,11 @@ void	no_flags(char *dir)
 
 int main(int argc, char* argv[])
 {
+	/*
+		из это лапши надо сообразить правило по кол-ву аргументов
+		тип когда аргц == 2,3,4 и т.д.
+		пока это прост мэин по тестированию функций
+	*/
 	DEBprog()
 	int i;
 	if (argc == 2)

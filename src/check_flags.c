@@ -1,8 +1,13 @@
 #include <string.h>
+
+/*
+эту штуку пока не юзаю, но это часть комбайна по обработке флагов
+*/
+
 int     *check_flags(int argc, char **argv)
 {
-    int     flags[5] = {0};
-    int	    i = 1;
+   int     flags[5] = {0};
+   int	    i = 1;
 	int	    b = 1;
 
 	while (b < argc)

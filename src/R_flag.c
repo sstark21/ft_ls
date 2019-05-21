@@ -3,14 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   R_flag.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sstark <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: rootuser <rootuser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 13:48:26 by sstark            #+#    #+#             */
-/*   Updated: 2019/05/15 20:11:56 by sstark           ###   ########.fr       */
+/*   Updated: 2019/05/21 12:02:54 by rootuser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/ft_ls.h"
+
+/*
+	ищет максимальное слово и возвразает его длину
+*/
 
 int		find_max_word(char *dir)
 {
@@ -31,6 +35,10 @@ int		find_max_word(char *dir)
 	return (ft_strlen(max_name));
 }
 
+/*
+	ищет ширину окна
+*/
+
 int		ioctl_space(char *dir)
 {
 	int max_word_len;
@@ -42,6 +50,10 @@ int		ioctl_space(char *dir)
 	win_size = w.ws_col;
 	return (win_size);
 }
+
+/*
+	ну тут ты в курсе
+*/
 
 int		recursive_flag(char *dir)
 {
